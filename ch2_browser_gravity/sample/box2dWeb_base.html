@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>box2dWeb base</title>
+    <style> canvas { border: 1px dotted rgba(255, 186, 165, 0.5); } </style>
+    <script src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+</head>
+<body>
+    <canvas id="box2dWebCanvas" width="600" height="400"></canvas>
+    <script src="js/box2dweb-basic-setting.js"></script>
+    <script>
+        // World 생성
+        var world = new b2World(new b2Vec2(0, 10), true);
+
+        // Debug Draw 세팅
+        world.SetDebugDraw(debugDraw);
+
+        // 화면 갱신
+        setInterval(function() {
+            world.Step(1/60, 6, 2);
+            world.ClearForces();
+            world.DrawDebugData();
+        }, 1000/60);
+    </script>
+</body>
+</html>

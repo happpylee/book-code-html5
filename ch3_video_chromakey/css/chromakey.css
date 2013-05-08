@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff9a8;
+}
+
+#chromakeyVideoContainer {
+    position: absolute;
+    width: 960px;
+}

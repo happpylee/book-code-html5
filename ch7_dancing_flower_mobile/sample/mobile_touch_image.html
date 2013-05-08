@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>모바일에서 이미지 터치하여 이동하기 샘플</title>
+</head>
+<body>
+    <script>
+        // canvas 생성
+        var canvasContainer = document.createElement("div");
+        var myCanvas = document.createElement("canvas");
+        myCanvas.width = window.innerWidth - 20;
+        myCanvas.height = window.innerHeight - 20;
+        myCanvas.style.border = "1px dashed #ff255f";
+        canvasContainer.appendChild(myCanvas);
+        document.body.appendChild(canvasContainer);
+
+        // context 획득
+        var canvasContext = myCanvas.getContext("2d");
+
+        // 표시할 이미지 로드 시작
+        var image = document.createElement("img");
+        image.addEventListener("load", imageLoadHandler, false);
+        image.src = "res/giraffe.png";
+
+        // 표시할 이미지 로드 완료
+        function imageLoadHandler(event) {
+            drawImageOnContext();
+            addEventToCanvas();
+        }
+
+        // canvas(context)에 이미지 표시
+        function drawImageOnContext() {
+            canvasContext.drawImage(image, 0, 0);
+        }
+
+        // canvas에 터치 이벤트 핸들러 연결
+        function addEventToCanvas() {
+            myCanvas.addEventListener("touchstart", touchstartHandler, false);
+            myCanvas.addEventListener("touchend", touchendHandler, false);
+            myCanvas.addEventListener("touchmove", touchmoveHandler, false);
+        }
+
+        // 터치 시작 핸들러
+        function touchstartHandler(event) {
+            touchmoveImage(event.touches[0]);
+            event.preventDefault();
+        }
+
+        // 터치 종료 핸들러
+        function touchendHandler(event) {
+            event.preventDefault();
+        }
+
+        // 터치 이동 핸들러
+        function touchmoveHandler(event) {
+            touchmoveImage(event.touches[0]);
+            event.preventDefault();
+        }
+
+        // 터치를 통해 이미지를 이동 시키기
+        function touchmoveImage(touch) {
+            var imageNewPosX = touch.pageX - myCanvas.offsetLeft - image.width/2;
+            var imageNewPosY = touch.pageY- myCanvas.offsetTop - image.height/2;
+
+            canvasContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            canvasContext.drawImage(image, imageNewPosX, imageNewPosY);
+        }
+    </script>
+</body>
+</html>

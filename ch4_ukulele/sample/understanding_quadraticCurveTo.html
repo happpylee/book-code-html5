@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>quadraticCurveTo 메소드 이해하기</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400" style="border: 1px dotted #e498a9">
+        Your browser don't support HTML5 Canvas!
+    </canvas>
+    <script>
+        // 캔버스
+        var myCanvas = document.getElementById("myCanvas");
+        var myContext = myCanvas.getContext("2d");
+
+        // 커브 포인트(Curve Point, CP)
+        myContext.strokeStyle = "red";
+        myContext.lineWidth = 5;
+        myContext.arc(200, 100, 3, 0, (Math.PI/180)*360, false);
+        myContext.stroke();
+
+        // 커브 포인트와 2차 곡선의 연결선
+        myContext.strokeStyle = "gray";
+        myContext.lineWidth = 1;
+        myContext.moveTo(50, 200);
+        myContext.lineTo(200, 100);
+        myContext.lineTo(350, 200);
+        myContext.stroke();
+
+        // 현재 기본 패스(current default path)를 리셋
+        myContext.beginPath();
+
+        // 2차 베지어 곡선
+        myContext.strokeStyle = "black";
+        myContext.lineWidth = 3;
+        myContext.moveTo(50, 200); // 곡선의 시작 위치
+        myContext.quadraticCurveTo(200, 100, 350, 200); // CP의 위치와 곡선의 끝 위치
+        myContext.stroke();
+    </script>
+</body>
+</html>

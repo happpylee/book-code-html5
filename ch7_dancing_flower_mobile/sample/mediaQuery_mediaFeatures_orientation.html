@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Media Query의 이해 - Media Features::Orientation</title>
+    <style>
+        #imageDiv {
+            margin: 0 auto;
+        }
+        @media screen and (orientation:portrait) {
+            #imageDiv {
+                width: 210px;
+                height: 343px;
+                background-image: url("res/mobile_portrait.png");
+            }
+        }
+        @media screen and (orientation:landscape) {
+            #imageDiv {
+                width: 343px;
+                height: 210px;
+                background-image: url("res/mobile_landscape.png");
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="imageDiv"></div>
+</body>
+</html>

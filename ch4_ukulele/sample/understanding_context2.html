@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>컨텍스트(Context) 이해하기2</title>
+</head>
+<body>
+    <button id="contextBtn">컨텍스트 이름 바꾸기</button>
+    <script>
+        // Object 정의
+        var myContext = {
+
+            _name : "얄미운 컨텍스트",
+
+            init : function() {
+                var contextBtn = document.getElementById("contextBtn");
+//                contextBtn.addEventListener("click", this.contextHandler, false);
+                contextBtn.addEventListener("click", this.bindContext(this.contextHandler, this), false);
+
+                alert(myContext._name);
+            },
+
+            contextHandler : function(event) {
+                this._name = "그래도 고마운 컨텍스트...";
+
+                alert("이름 변경 후 : " + myContext._name);
+            },
+
+            bindContext : function(func, context) {
+
+                return function() {
+                    func.apply(context);
+                }
+            }
+        }
+
+        // Object 초기화
+        myContext.init();
+    </script>
+</body>
+</html>

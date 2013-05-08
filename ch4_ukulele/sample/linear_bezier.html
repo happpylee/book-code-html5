@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>linear bezier</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400" style="border: 1px dotted #e498a9">
+        Your browser don't support HTML5 Canvas!
+    </canvas>
+    <script>
+        // 변수 정의 및 초기화
+        var myCanvas = document.getElementById("myCanvas");
+        var myContext = myCanvas.getContext("2d");
+
+        var pathStyle = "dotted";   // "curve";
+        var P0 = {x:50, y:200};      // 시작점
+        var P1 = {x:350, y:200};    // 끝점
+        var Lt = {x:0, y:0};        // t점
+        var t = 0;
+
+        // 시작점과 끝점을 잇는 기본 선(배경라인)
+        function drawBaseLine() {
+
+            myContext.beginPath();
+            myContext.strokeStyle = "gray";
+            myContext.lineWidth = 1;
+            myContext.moveTo(P0.x, P0.y);
+            myContext.lineTo(P1.x, P1.y);
+            myContext.stroke();
+        }
+
+        // 화면 갱신
+        function update() {
+
+            // 화면 지우고 기본 선 그림
+            if(pathStyle == "dotted") {
+                myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                drawBaseLine();
+            }
+
+            // t의 값에 따른 t의 위치값
+            Lt.x = (P1.x == P0.x) ? (P0.x) : (P0.x + (P1.x - P0.x) * t);
+            Lt.y = (P1.y == P0.y) ? (P0.y) : (P0.y + (P1.y - P0.y) * t);
+
+            // t의 위치를 점으로 표시
+            myContext.beginPath();
+            myContext.fillStyle = "red";
+            myContext.lineWidth = 1;
+            myContext.arc(Lt.x, Lt.y, 3, 0, (Math.PI/180)*360, false);
+            myContext.fill();
+
+            // t가 가지는 범위인 0 <= t <= 1 을 표현
+            if (t <= 1) {
+                t += 0.01;
+            } else {
+                t = 0;
+
+                if (pathStyle == "curve") {
+                    myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+                    drawBaseLine();
+                }
+            }
+
+            // t값의 로그 출력
+            console.log("t: " + t);
+        }
+
+        // 메소드 호출
+        drawBaseLine();
+        update();
+        setInterval(update, 1000/60);
+    </script>
+</body>
+</html>

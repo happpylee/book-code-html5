@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>matrix3d()_scale</title>
+    <style>
+        .CSS3DSpace {
+            width: 200px;
+            height: 250px;
+            border: 1px dotted #0b1eff;
+
+            -webkit-perspective: 300;
+            perspective: 300;
+        }
+        .imageDiv {
+            width: 150px;
+            height: 215px;
+            border: 1px dotted #a30071;
+            background: url("image/apple_tree.png");
+        }
+        .matrix3dDiv {
+            left: 24px;
+            top: 18px;
+            position: absolute;
+
+            -webkit-transform : matrix3d(0.5, 0, 0, 0,
+                                         0, 1.5, 0, 0,
+                                         0, 0, 1, 0,
+                                         0, 0, 0, 1);
+            -ms-transform : matrix3d(0.5, 0, 0, 0,
+                                     0, 1.5, 0, 0,
+                                     0, 0, 1, 0,
+                                     0, 0, 0, 1);
+            transform : matrix3d(0.5, 0, 0, 0,
+                                 0, 1.5, 0, 0,
+                                 0, 0, 1, 0,
+                                 0, 0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="CSS3DSpace">
+        <div class="imageDiv matrix3dDiv"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>캔버스에 이미지 그리고 변환하기</title>
+</head>
+<body>
+    <script>
+        // canvas 생성
+        var canvasContainer = document.createElement("div");
+        var myCanvas = document.createElement("canvas");
+        myCanvas.width = 400;
+        myCanvas.height = 400;
+        myCanvas.style.border = "1px dashed #ff255f";
+        canvasContainer.appendChild(myCanvas);
+        document.body.appendChild(canvasContainer);
+
+        // context 획득
+        var canvasContext = myCanvas.getContext("2d");
+
+        // 표시할 이미지 로드 시작
+        var image = document.createElement("img");
+        image.addEventListener("load", imageLoadHandler, false);
+        image.src = "res/giraffe.png";
+
+        // 표시할 이미지 로드 완료
+        function imageLoadHandler(event) {
+            drawImageOnContext();
+        }
+
+        // canvas(context)에 이미지 표시
+        function drawImageOnContext() {
+            canvasContext.drawImage(image, 0, 0);
+            canvasContext.drawImage(image, 0, 240, 160, 84);
+            canvasContext.drawImage(image, 300, 50);
+        }
+    </script>
+</body>
+</html>

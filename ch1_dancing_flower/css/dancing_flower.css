@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#canvasContainer {
+    margin: 0 auto;
+    width: 800px;
+    height: 450px;
+    background-color: #b1dbf4;
+}

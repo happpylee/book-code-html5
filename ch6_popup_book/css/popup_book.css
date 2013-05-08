@@ -1,0 +1,208 @@
+body {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    background-color: #73d6ff;
+    border: 1px solid #fce045;
+
+    -webkit-perspective: 1200px;
+    perspective: 1200px;
+}
+
+#viewport {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #00ff00;
+
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform: translateX(-260px) translateY(-70px) translateZ(-600px) rotateX(-60deg);
+    -ms-transform: translateX(-260px) translateY(-70px) translateZ(-600px) rotateX(-60deg);
+    transform: translateX(-260px) translateY(-70px) translateZ(-600px) rotateX(-60deg);
+}
+
+#book {
+    margin-left: -600px;
+    margin-top: -300px;
+    left: 50%;
+    top: 50%;
+    width: 1200px;
+    height: 600px;
+    position: absolute;
+    border: 1px solid rgba(255, 0, 0, 1);
+
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform: translateY(100px) rotateX(90deg);
+    -ms-transform: translateY(100px) rotateX(90deg);
+    transform: translateY(100px) rotateX(90deg);
+}
+
+.left-page {
+    left: 0px;
+    top: 0px;
+    width: 600px;
+    height: 600px;
+
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform-origin: 600px 300px;
+    -ms-transform-origin: 600px 300px;
+    transform-origin: 600px 300px;
+}
+
+.right-page {
+    left: 600px;
+    top: 0px;
+    width: 600px;
+    height: 600px;
+    position: absolute;
+
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform-origin: 0px 300px;
+    -ms-transform-origin: 0px 300px;
+    transform-origin: 0px 300px;
+}
+
+.cover {
+    width: 600px;
+    height: 600px;
+    position: absolute;
+
+    background-image: url("../res/image/front_cover.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform: rotateY(-4deg);
+    -ms-transform: rotateY(-4deg);
+    transform: rotateY(-4deg);
+}
+
+.pages .decoration {
+    position: relative;
+
+    -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    -ms-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.page1 {
+    background-color: rgb(255, 253, 230);
+
+    -webkit-transform: rotateY(178deg);
+    -ms-transform: rotateY(178deg);
+    transform: rotateY(178deg);
+}
+
+#page1_decoration1  {
+    left: 50px;
+    top: 50px;
+    width: 150px;
+    height: 215px;
+
+    background-image: url("../res/image/apple_tree.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform-origin: 75px 215px;
+    -ms-transform-origin: 75px 215px;
+    transform-origin: 75px 215px;
+}
+
+#page1_decoration2  {
+    left: 350px;
+    top: -60px;
+    width: 174px;
+    height: 220px;
+
+    background-image: url("../res/image/giraffe.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform-origin: 87px 200px;
+    -ms-transform-origin: 87px 200px;
+    transform-origin: 87px 200px;
+}
+
+.page2 {
+    background-color: rgb(251, 213, 255);
+
+    -webkit-transform: rotateY(-2deg);
+    -ms-transform: rotateY(-2deg);
+    transform: rotateY(-2deg);
+}
+
+#page2_decoration1  {
+    left: 50px;
+    top: 50px;
+    width: 100px;
+    height: 95px;
+
+    background-image: url("../res/image/rose.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform-origin: 50px 95px;
+    -ms-transform-origin: 50px 95px;
+    transform-origin: 50px 95px;
+}
+
+#page2_decoration2  {
+    left: 250px;
+    top: 70px;
+    width: 71px;
+    height: 101px;
+
+    background-image: url("../res/image/rose2.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform-origin: 35px 100px;
+    -ms-transform-origin: 35px 100px;
+    transform-origin: 35px 100px;
+}
+
+#page2_decoration3  {
+    left: 350px;
+    top: 130px;
+    width: 61px;
+    height: 86px;
+
+    background-image: url("../res/image/dandelion.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform-origin: 30px 85px;
+    -ms-transform-origin: 30px 85px;
+    transform-origin: 30px 85px;
+}
+
+#page2_decoration4  {
+    left: 160px;
+    top: 80px;
+    width: 100px;
+    height: 100px;
+
+    background-image: url("../res/image/tulip.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform-origin: 50px 100px;
+    -ms-transform-origin: 50px 100px;
+    transform-origin: 50px 100px;
+}
+
+.back {
+    width: 600px;
+    height: 600px;
+    position: absolute;
+
+    background-image: url("../res/image/back_cover.png");
+    background-repeat: no-repeat;
+
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}

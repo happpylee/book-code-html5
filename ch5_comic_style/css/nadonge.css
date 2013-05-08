@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#scrollContainer {
+    overflow: hidden;
+    margin: -40px auto 0px auto;
+    width: 330px;
+}
+
+#comicFrameContainer {
+    position: relative;
+    width: 230px;
+    left: 50px;
+    border: 0px dotted #8a2be2;
+}
+
+.comic_frame_1 {
+    width: 230px;
+    height: 194px;
+    background: url("../res/image/nadonge.png") -62px 0;
+}
+
+.comic_frame_2 {
+    width: 230px;
+    height: 186px;
+    background: url("../res/image/nadonge.png") -62px -193px;
+}
+
+.comic_frame_3 {
+    width: 230px;
+    height: 194px;
+    background: url("../res/image/nadonge.png") -62px -379px;
+}
+
+.comic_frame_4 {
+    width: 230px;
+    height: 186px;
+    background: url("../res/image/nadonge.png") -62px -574px;
+}
+
+.comic_frame_5 {
+    width: 230px;
+    height: 194px;
+    background: url("../res/image/nadonge.png") -62px -759px;
+}
+
+.comic_frame_6 {
+    width: 230px;
+    height: 986px;
+    background: url("../res/image/nadonge.png") -62px -954px;
+}
+
+.comic_frame_7 {
+    width: 230px;
+    height: 188px;
+    background: url("../res/image/nadonge.png") -62px -1939px;
+}
+
+.comic_frame_text {
+    position: relative;
+    width: 323px;
+    height: 43px;
+    background: url("../res/image/nadonge.png") -24px -2127px;
+}
+
+.comic_airplane {
+    position: absolute;
+    display: none;
+    width: 144px;
+    height: 104px;
+    background: url("../res/image/nadonge.png") -36px -2189px;
+}
+
+.comic_next_normal {
+    position: relative;
+    display: none;
+    z-index: 1;
+    width: 38px;
+    height: 71px;
+    background: url("../res/image/nadonge.png") -208px -2199px;
+}
+
+.comic_next_touch {
+    position: relative;
+    display: none;
+    z-index: 2;
+    width: 38px;
+    height: 71px;
+    background: url("../res/image/nadonge.png") -249px -2199px;
+}
+
+#copyright {
+    position: relative;
+    text-align: center;
+    top: 80px;
+    font-size: 11px;
+    height: 60px;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>box2dWeb Creating Ball</title>
+    <style> canvas { border: 1px dotted rgba(255, 186, 165, 0.5); } </style>
+    <script src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+</head>
+<body>
+    <canvas id="box2dWebCanvas" width="600" height="400"></canvas>
+    <script src="js/box2dweb-basic-setting.js"></script>
+    <script>
+        //////////////////////////////////////////////////////////////
+        // World 생성
+        //////////////////////////////////////////////////////////////
+
+        var worldScale = 30; // World Scale
+        var world = new b2World(new b2Vec2(0, 10), true);
+
+        //////////////////////////////////////////////////////////////
+        // 고정체(Box) 생성
+        //////////////////////////////////////////////////////////////
+
+        // BodyDef 생성
+        var boxBodyDef = new b2BodyDef();
+        boxBodyDef.type = b2Body.b2_staticBody;
+        boxBodyDef.position.x = 300/worldScale;
+        boxBodyDef.position.y = 200/worldScale;
+
+        // Shape 생성
+        var boxShape = new b2PolygonShape();
+        boxShape.SetAsBox(1, 0.5);
+
+        // FixtureDef 생성
+        var boxFixtureDef = new b2FixtureDef();
+        boxFixtureDef.density = 1.0;
+        boxFixtureDef.friction = 0.5;
+        boxFixtureDef.restitution = 0.2;
+        boxFixtureDef.shape = boxShape;
+
+        // Body 생성
+        world.CreateBody(boxBodyDef).CreateFixture(boxFixtureDef);
+
+        //////////////////////////////////////////////////////////////
+        // Ball 생성
+        //////////////////////////////////////////////////////////////
+
+        // Ball BodyDef 생성
+        var ballBodyDef = new b2BodyDef();
+        ballBodyDef.type = b2Body.b2_dynamicBody;
+        ballBodyDef.position.x = 300/worldScale - 1.5;
+        ballBodyDef.position.y = -1; // 400/worldScale
+
+        // Ball Shape 생성
+        var ballShape = new b2CircleShape(1);
+
+        // Ball FixtureDef 생성
+        var ballFixtureDef = new b2FixtureDef();
+        ballFixtureDef.density = 1.0;
+        ballFixtureDef.friction = 1.0;
+        ballFixtureDef.restitution = 0.5;
+        ballFixtureDef.shape = ballShape;
+
+        // Ball Body 생성
+        world.CreateBody(ballBodyDef).CreateFixture(ballFixtureDef);
+
+        //////////////////////////////////////////////////////////////
+        // Debug Mode
+        //////////////////////////////////////////////////////////////
+
+        // Debug Draw 세팅
+        world.SetDebugDraw(debugDraw);
+
+        // 화면 갱신
+        setInterval(function() {
+            world.Step(1/60, 6, 2);
+            world.ClearForces();
+            world.DrawDebugData();
+        }, 1000/60);
+    </script>
+</body>
+</html>

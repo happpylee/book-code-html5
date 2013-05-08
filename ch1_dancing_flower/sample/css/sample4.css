@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.image4 {
+    background-image: url("../res/dog.png");
+}

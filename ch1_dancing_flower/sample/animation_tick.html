@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>특정 시간 간격으로 이벤트 발생 시키기</title>
+</head>
+<body>
+<script>
+    window.setInterval(function(event) {
+        console.log("초당 60번, 이벤트 틱이 발생!");
+    }, 1000/60);
+</script>
+</body>
+</html>

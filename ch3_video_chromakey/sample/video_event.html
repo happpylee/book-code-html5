@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>비디오 이벤트</title>
+</head>
+<body>
+    <!--비디오 요소 생성-->
+    <video id="myVideo" controls>
+        <source src="video/sample_video_01.mp4">
+        <source src="video/sample_video_01.webm">
+        Your browser does not support the video element.
+    </video>
+
+    <!--이벤트 처리 스크립트-->
+    <script>
+        var myVideo = document.getElementById("myVideo");
+        myVideo.addEventListener("loadstart", videoEventHandler, false);
+        myVideo.addEventListener("durationchange", videoEventHandler, false);
+        myVideo.addEventListener("loadedmetadata", videoEventHandler, false);
+        myVideo.addEventListener("loadeddata", videoEventHandler, false);
+        myVideo.addEventListener("progress", videoEventHandler, false);
+        myVideo.addEventListener("canplay", videoEventHandler, false);
+        myVideo.addEventListener("canplaythrough", videoEventHandler, false);
+
+        function videoEventHandler(event) {
+
+            var eventType = event.type;
+
+            console.log("[비디오 이벤트] " + eventType);
+
+            switch(eventType) {
+                case "loadstart":
+                    console.log("myVideo.duration: " + myVideo.duration);
+                    break;
+
+                case "durationchange":
+                    console.log("myVideo.duration: " + myVideo.duration);
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

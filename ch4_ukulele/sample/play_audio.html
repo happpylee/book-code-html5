@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>오디오 재생하기</title>
+</head>
+<body>
+<script>
+    // 오디오 요소 생성
+    var audioElement = document.createElement("audio");
+    audioElement.addEventListener("canplaythrough", audioEventHandler, false);
+    audioElement.controls = true;
+
+    // 첫번째 오디오 소스 연결
+    var audioSource1 = document.createElement("source");
+    audioSource1.src = "audio/audio_sample.mp3";
+    audioElement.appendChild(audioSource1);
+
+    // 두번째 오디오 소스 연결
+    var audioSource2 = document.createElement("source");
+    audioSource2.src = "audio/audio_sample.ogg";
+    audioElement.appendChild(audioSource2);
+
+    // 오디오 요소 페이지에 삽입
+    document.body.appendChild(audioElement);
+
+    // 오디오 로드 완료시 실행할 이벤트 핸들러
+    function audioEventHandler(event) {
+        audioElement.play();
+    }
+</script>
+</body>
+</html>

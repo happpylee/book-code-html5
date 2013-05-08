@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>skew()</title>
+    <style>
+        .imageDiv {
+            border: 1px dotted #a30071;
+            width: 230px;
+            height: 186px;
+            background: url("image/nadonge.png") -62px 0px;
+        }
+        .skewDiv {
+            transform : skew(45deg, 0);
+            -webkit-transform : skew(45deg, 0);
+            -ms-transform : skew(45deg, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="imageDiv"></div>
+    <div class="imageDiv skewDiv"></div>
+</body>
+</html>

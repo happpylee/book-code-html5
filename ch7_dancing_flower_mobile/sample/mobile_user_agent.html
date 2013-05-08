@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User Agent를 사용하여 모바일 디바이스 체크하기</title>
+</head>
+<body>
+    <script>
+        var myUserAgent = navigator.userAgent;
+
+        if(myUserAgent.match(/Android/i) != null) {
+            console.log("체크된 모바일 디바이스는 [안드로이드]입니다.")
+        }
+        else if(myUserAgent.match(/iPod/i) != null) {
+            console.log("체크된 모바일 디바이스는 [아이팟 터치]입니다.")
+        }
+        else if(myUserAgent.match(/iPhone/i) != null) {
+            console.log("체크된 모바일 디바이스는 [아이폰]입니다.")
+        }
+        else if(myUserAgent.match(/iPad/i) != null) {
+            alert("체크된 디바이스는 [아이패드]입니다.")
+        }
+        else if(myUserAgent.match(/IEMobile/i) != null) {
+            console.log("체크된 모바일 디바이스는 [윈도우 폰]입니다.")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Daum Open Api를 이용한 Search</title>
+    <script src="libs/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+
+<div id="imgList"></div>
+
+<script>
+    $.ajax({
+        url : "http://apis.daum.net/search/image",
+        dataType: "jsonp",
+        type: "post",
+        jsonp: "callback",
+        data: {
+            apikey: "여러분의 apikey를 여기에 넣으세요!",
+            q: "한지민",
+            result: "5",
+            output: "json"
+        },
+        success: function(result) {
+
+            console.log("[호출결과] " + result);
+
+            result = result.channel;
+
+            $(result.item).each(function(index, data) {
+                var image = $("<img>").attr({
+                    src: data.thumbnail,
+                    title: data.title
+                });
+                image.click(function() {
+                    window.open(data.image);
+                });
+                image.appendTo("#imgList");
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

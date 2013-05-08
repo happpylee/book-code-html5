@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.image2 {
+    background-image: url("../res/burger_house.png");
+}

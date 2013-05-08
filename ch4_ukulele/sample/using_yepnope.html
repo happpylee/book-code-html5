@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>yepnope로더 이해하기</title>
+    <script src="js/yepnope.1.5.4-min.js"></script>
+</head>
+<body>
+    <script>
+        yepnope([{
+            load: "js/sample1.js",
+            callback: function (url, result, key) {
+                alert("sample1.js가 로드되었습니다!");
+            }
+        },{
+            load: "js/sample2.js",
+            callback: function (url, result, key) {
+                alert("sample2.js가 로드되었습니다!");
+            }
+        }]);
+    </script>
+</body>
+</html>
+

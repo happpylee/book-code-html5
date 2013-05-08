@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Media Query의 이해 - Media Type</title>
+    <style>
+        #imageDiv {
+            margin: 0 auto;
+        }
+        @media screen {
+            #imageDiv {
+                width: 210px;
+                height: 343px;
+                background-image: url("res/mediaType_screen.png");
+            }
+        }
+        @media print {
+            #imageDiv {
+                width: 400px;
+                height: 373px;
+                background-image: url("res/mediaType_print.png");
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="imageDiv"></div>
+</body>
+</html>

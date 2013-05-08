@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User Agent를 사용하여 브라우저 체크하기</title>
+</head>
+<body>
+    <script>
+        var myUserAgent = navigator.userAgent;
+
+        if(myUserAgent.match(/Chrome/i) != null) {
+            console.log("체크된 브라우저는 [크롬 브라우저]입니다.")
+        }
+        else if(myUserAgent.match(/Firefox/i) != null) {
+            console.log("체크된 브라우저는 [파이어폭스 브라우저]입니다.")
+        }
+        else if(myUserAgent.match(/Safari/i) != null) {
+            console.log("체크된 브라우저는 [사파리 브라우저]입니다.")
+        }
+        else if(myUserAgent.match(/Opera/i) != null) {
+            console.log("체크된 브라우저는 [오페라 브라우저]입니다.")
+        }
+        else if(myUserAgent.match(/MSIE/i) != null) {
+            console.log("체크된 브라우저는 [익스플로러 브라우저]입니다.")
+        }
+    </script>
+</body>
+</html>

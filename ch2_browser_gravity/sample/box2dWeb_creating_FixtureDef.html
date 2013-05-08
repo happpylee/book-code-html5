@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>box2dWeb FixtureDef</title>
+    <style> canvas { border: 1px dotted rgba(255, 186, 165, 0.5); } </style>
+    <script src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+</head>
+<body>
+    <canvas id="box2dWebCanvas" width="600" height="400"></canvas>
+    <script src="js/box2dweb-basic-setting.js"></script>
+    <script>
+
+        //////////////////////////////////////////////////////////////
+        // World worldScale
+        //////////////////////////////////////////////////////////////
+
+        var worldScale = 30;
+
+        //////////////////////////////////////////////////////////////
+        // World 생성
+        //////////////////////////////////////////////////////////////
+
+        var world = new b2World(new b2Vec2(0, 10), true);
+
+        //////////////////////////////////////////////////////////////
+        // Ground 생성
+        //////////////////////////////////////////////////////////////
+
+        // Ground BodyDef 생성
+        var groundBodyDef = new b2BodyDef();
+        groundBodyDef.type = b2Body.b2_staticBody;
+        groundBodyDef.position.x = 300/worldScale;
+        groundBodyDef.position.y = 400/worldScale;
+
+        // Ground Shape 생성
+        var groundShape = new b2PolygonShape();
+        groundShape.SetAsBox(8, 0.5);
+
+        // Ground FixtureDef 생성
+        var groundFixtureDef = new b2FixtureDef();
+        groundFixtureDef.density = 1.0;
+        groundFixtureDef.friction = 0.5;
+        groundFixtureDef.restitution = 0.2;
+        groundFixtureDef.shape = groundShape;
+
+        // Ground Body 생성
+        world.CreateBody(groundBodyDef).CreateFixture(groundFixtureDef);
+
+        //////////////////////////////////////////////////////////////
+        // Ball 생성
+        //////////////////////////////////////////////////////////////
+
+        var ballCount = 3;
+        var ballBodyDef = new b2BodyDef();
+        ballBodyDef.type = b2Body.b2_dynamicBody;
+
+        var ballFixtureDef = new b2FixtureDef();
+
+        var createBall = function(density, friction, restitution, x, y, r) {
+
+            ballFixtureDef.density = density;
+            ballFixtureDef.friction = friction;
+            ballFixtureDef.restitution = restitution;
+
+            ballBodyDef.position.x = x;
+            ballBodyDef.position.y = y;
+
+            ballFixtureDef.shape = new b2CircleShape(r);
+
+            world.CreateBody(ballBodyDef).CreateFixture(ballFixtureDef);
+        };
+
+        for(var i=0; i<ballCount; i++) {
+
+            switch (i) {
+                case 0:
+                    //createBall(1, 1.0, 0, 3, 1, 1);
+                    createBall(0, 1.0, 0, 3, 1, 1);
+                    break;
+
+                case 1:
+//                    createBall(0.5, 1.0, 0.5, 9, 1, 1);
+                    createBall(0.5, 1.0, 0.5, 9, 1, 1);
+                    break;
+
+                case 2:
+                    createBall(1, 1.0, 0.9, 16, 1, 1);
+                    break;
+            }
+        }
+
+        //////////////////////////////////////////////////////////////
+        // Debug Mode
+        //////////////////////////////////////////////////////////////
+
+        // Debug Draw 세팅
+        world.SetDebugDraw(debugDraw);
+
+        // 화면 갱신
+        setInterval(function() {
+            world.Step(1/60, 6, 2);
+            world.ClearForces();
+            world.DrawDebugData();
+        }, 1000/60);
+
+    </script>
+</body>
+</html>

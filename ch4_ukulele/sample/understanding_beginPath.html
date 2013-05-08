@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>beginPath 메소드 이해하기</title>
+</head>
+<body>
+    <!--캔버스 요소-->
+    <canvas id="myCanvas" width="400" height="400">
+        Your browser don't support HTML5 Canvas!
+    </canvas>
+    <script>
+        // 캔버스
+        var myCanvas = document.getElementById("myCanvas");
+        var myContext = myCanvas.getContext("2d");
+
+        // 패스의 굵기
+        myContext.lineWidth = 10;
+
+        // 빨간색 패스
+        myContext.strokeStyle = "#ff0000";
+        myContext.moveTo(10, 10);
+        myContext.lineTo(200, 10);
+
+        // 빨간색 패스 그리기
+        myContext.stroke();
+
+        // 현재 기본 패스를 초기화
+        myContext.beginPath();
+
+        // 파란색 패스
+        myContext.strokeStyle = "#0000ff";
+        myContext.moveTo(10, 30);
+        myContext.lineTo(200, 30);
+
+        // 파란색 패스 그리기
+        myContext.stroke();
+    </script>
+</body>
+</html>

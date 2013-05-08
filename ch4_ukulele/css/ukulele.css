@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#canvasContainer {
+    margin: 50px auto;
+    width: 780px;
+    height: 500px;
+}

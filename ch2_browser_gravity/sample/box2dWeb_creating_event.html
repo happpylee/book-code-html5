@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>box2dWeb Using Event</title>
+    <style> canvas { border: 1px dotted rgba(255, 186, 165, 0.5); } </style>
+    <script src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+</head>
+<body>
+    <canvas id="box2dWebCanvas" width="600" height="400"></canvas>
+    <script src="js/box2dweb-basic-setting.js"></script>
+    <script>
+
+        //////////////////////////////////////////////////////////////
+        // World 생성
+        //////////////////////////////////////////////////////////////
+
+        var worldScale = 30;
+        var world = new b2World(new b2Vec2(0, 10), true);
+
+        //////////////////////////////////////////////////////////////
+        // Ground 생성
+        //////////////////////////////////////////////////////////////
+
+        // Ground BodyDef 생성
+        var groundBodyDef = new b2BodyDef();
+        groundBodyDef.type = b2Body.b2_staticBody;
+        groundBodyDef.position.x = 300/worldScale;
+        groundBodyDef.position.y = 400/worldScale;
+
+        // Ground Shape 생성
+        var groundShape = new b2PolygonShape();
+        groundShape.SetAsBox(8, 0.5);
+
+        // Ground FixtureDef 생성
+        var groundFixtureDef = new b2FixtureDef();
+        groundFixtureDef.density = 1.0;
+        groundFixtureDef.friction = 0.5;
+        groundFixtureDef.restitution = 0.2;
+        groundFixtureDef.shape = groundShape;
+
+        // Ground Body 생성
+        world.CreateBody(groundBodyDef).CreateFixture(groundFixtureDef);
+
+        //////////////////////////////////////////////////////////////
+        // Ball 생성
+        //////////////////////////////////////////////////////////////
+
+        var ballCount = 1; // 3;
+        var ballBodyDef = new b2BodyDef();
+        ballBodyDef.type = b2Body.b2_dynamicBody;
+
+        var ballFixtureDef = new b2FixtureDef();
+
+        var createBall = function(density, friction, restitution, x, y, r) {
+
+            ballFixtureDef.density = density;
+            ballFixtureDef.friction = friction;
+            ballFixtureDef.restitution = restitution;
+
+            ballBodyDef.position.x = x;
+            ballBodyDef.position.y = y;
+
+            ballFixtureDef.shape = new b2CircleShape(r);
+
+            world.CreateBody(ballBodyDef).CreateFixture(ballFixtureDef);
+        };
+
+        for(var i=0; i<ballCount; i++) {
+
+            switch (i) {
+                case 0:
+                    createBall(0, 1.0, 0, 3, 1, 1);
+                    break;
+
+                case 1:
+                    createBall(0.5, 1.0, 0.5, 9, 1, 1);
+                    break;
+
+                case 2:
+                    createBall(1, 1.0, 0.9, 16, 1, 1);
+                    break;
+            }
+        }
+
+        //////////////////////////////////////////////////////////////
+        // Body Information Check
+        //////////////////////////////////////////////////////////////
+
+        function checkBodyInfo() {
+            for(var body=world.GetBodyList(); body; body=body.GetNext()) {
+                if(!body.IsAwake()) {
+                    world.DestroyBody(body);
+                }
+            }
+        }
+
+        //////////////////////////////////////////////////////////////
+        // Event Setting
+        //////////////////////////////////////////////////////////////
+
+        function addEvent() {
+
+            var b2DestructionListener = new Box2D.Dynamics.b2DestructionListener;
+            b2DestructionListener.SayGoodbyeFixture = function(fixture) {
+                console.log("[Box2D.Dynamics.b2DestructionListener] fixture: " + fixture);
+            }
+            b2DestructionListener.SayGoodbyeJoint = function(joint) {
+                console.log("[Box2D.Dynamics.b2DestructionListener] joint: " + joint);
+            }
+
+            var b2ContactListener = new Box2D.Dynamics.b2ContactListener;
+            b2ContactListener.BeginContact = function(contact) {
+                console.log("[Box2D.Dynamics.b2ContactListener] BeginContact->contact: " + contact);
+            }
+            b2ContactListener.PreSolve = function(contact, oldManifold) {
+                console.log("[Box2D.Dynamics.b2ContactListener] PreSolve->contact: " + contact + " PreSolve->oldManifold: " + oldManifold);
+            }
+            b2ContactListener.PostSolve = function(contact, impulse) {
+                console.log("[Box2D.Dynamics.b2ContactListener] PostSolve->contact: " + contact + " PostSolve->impulse: " + impulse);
+            }
+            b2ContactListener.EndContact = function(contact) {
+                console.log("[Box2D.Dynamics.b2ContactListener] EndContact->contact: " + contact);
+            }
+
+            //world.SetDestructionListener(b2DestructionListener);
+            world.SetContactListener(b2ContactListener);
+        }
+
+        addEvent();
+
+        //////////////////////////////////////////////////////////////
+        // Debug Mode
+        //////////////////////////////////////////////////////////////
+
+        // Debug Draw 세팅
+        world.SetDebugDraw(debugDraw);
+
+        // 화면 갱신
+        setInterval(function() {
+            world.Step(1/60, 6, 2);
+            world.ClearForces();
+            world.DrawDebugData();
+            checkBodyInfo();
+        }, 1000/60);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>캔버스 생성하기 - JavaScript</title>
+</head>
+<body>
+    <script>
+        var canvasContainer = document.createElement("div");
+        var myCanvas = document.createElement("canvas");
+        myCanvas.width = 200;
+        myCanvas.height = 200;
+        myCanvas.style.border = "1px dashed #ff255f";
+        canvasContainer.appendChild(myCanvas);
+        document.body.appendChild(canvasContainer);
+    </script>
+</body>
+</html>

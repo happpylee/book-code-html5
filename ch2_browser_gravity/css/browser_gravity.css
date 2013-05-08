@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#search {
+    width: 200px;
+    z-index: 1;
+}
+
+#search .search_window {
+    width: inherit;
+    height: 26px;
+    display: block;
+    border: 6px solid rgb(230, 10, 164);
+    background-color: #fff200;
+}
+
+#search .input_text {
+    position: relative;
+    left: 3px;
+    width: 96%;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    background-color:inherit;
+    border: 0;
+    outline:none;
+}

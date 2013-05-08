@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>캔버스에 비디오 그리기</title>
+    <style>
+        #myCanvas {
+            border: 1px dotted #e498a9;
+        }
+        #myVideo {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="640" height="480">
+        Your browser does not support the canvas element.
+    </canvas>
+    <video id="myVideo" src="video/sample_video_01.webm" controls>
+        Your browser does not support the video element.
+    </video>
+    <script>
+        var myVideo = document.getElementById("myVideo");
+        var myContext = document.getElementById("myCanvas").getContext("2d");
+
+        function update() {
+            myContext.drawImage(myVideo, 0, 0);
+        }
+
+        myVideo.play();
+        setInterval(update, 33);
+    </script>
+</body>
+</html>

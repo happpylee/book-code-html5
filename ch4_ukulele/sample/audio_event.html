@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>오디오 이벤트</title>
+</head>
+<body>
+    <!--오디오 요소 생성-->
+    <audio id="myAudio" controls>
+        <source src="audio/audio_sample.mp3">
+        <source src="audio/audio_sample.ogg">
+        Your browser does not support the Audio element.
+    </audio>
+
+    <!--이벤트 처리 스크립트-->
+    <script>
+        var myAudio = document.getElementById("myAudio");
+        myAudio.addEventListener("loadstart", AudioEventHandler, false);
+        myAudio.addEventListener("durationchange", AudioEventHandler, false);
+        myAudio.addEventListener("loadedmetadata", AudioEventHandler, false);
+        myAudio.addEventListener("loadeddata", AudioEventHandler, false);
+        myAudio.addEventListener("progress", AudioEventHandler, false);
+        myAudio.addEventListener("canplay", AudioEventHandler, false);
+        myAudio.addEventListener("canplaythrough", AudioEventHandler, false);
+
+        function AudioEventHandler(event) {
+
+            var eventType = event.type;
+
+            console.log("[오디오 이벤트] " + eventType);
+
+            switch(eventType) {
+                case "loadstart":
+                    console.log("myAudio.duration: " + myAudio.duration);
+                    break;
+
+                case "durationchange":
+                    console.log("myAudio.duration: " + myAudio.duration);
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

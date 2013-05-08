@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>비디오 타입 체크하기</title>
+</head>
+<body>
+    <script>
+        var video = document.createElement("video");
+
+        if(video.canPlayType("video/webm") == "probably" || video.canPlayType("video/webm") == "maybe") {
+            console.log("이 브라우저가 지원하는 비디오 포맷은 webm 입니다.");
+        }
+        else if(video.canPlayType("video/ogg") == "probably" || video.canPlayType("video/ogg") == "maybe") {
+            console.log("이 브라우저가 지원하는 비디오 포맷은 ogg 입니다.");
+        }
+        else if(video.canPlayType("video/mp4") == "probably" || video.canPlayType("video/mp4") == "maybe") {
+            console.log("이 브라우저가 지원하는 비디오 포맷은 mp4 입니다.");
+        }
+    </script>
+</body>
+</html>

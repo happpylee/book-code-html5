@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>quadratic bezier</title>
+    <style>
+        div canvas {
+            position: absolute;
+            border: 1px dotted #e498a9;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvasContainer">
+        <canvas id="subCanvas" width="400" height="400">
+            Your browser don't support HTML5 Canvas!
+        </canvas>
+        <canvas id="mainCanvas" width="400" height="400">
+            Your browser don't support HTML5 Canvas!
+        </canvas>
+    </div>
+    <script>
+        // 캔버스와 컨텍스트 정의
+        var subCanvas = document.getElementById("subCanvas");
+        var mainCanvas = document.getElementById("mainCanvas");
+        var subContext = subCanvas.getContext("2d");
+        var mainContext = mainCanvas.getContext("2d");
+
+        // 2차 베지어 곡선을 위한 변수 정의
+        var P0 = {x:20, y:200};     // 시작점
+        var P1 = {x:100, y:40};     // 중간점 // {x:200, y:40};
+        var P2 = {x:380, y:200};    // 끝점
+        var Q0 = {x:0, y:0};        // 시작점과 중간점의 선분에서 t값의 변화에 따른 위치
+        var Q1 = {x:0, y:0};        // 중간점과 끝점의 선분에서 t값의 변화에 따른 위치
+        var Qt = {x:0, y:0};        // Q0과 Q1과의 선분에서 t값의 변화에 따른 위치
+        var t = 0;
+
+        // 점들을 잇는 기본 선(배경라인)
+        function drawBaseLine() {
+
+            subContext.beginPath();
+            subContext.strokeStyle = "gray";
+            subContext.lineWidth = 1;
+            subContext.moveTo(P0.x, P0.y);
+            subContext.lineTo(P1.x, P1.y);
+            subContext.lineTo(P2.x, P2.y);
+            subContext.stroke();
+        }
+
+        // 화면 갱신(Sub Canvas)
+        function update1() {
+
+            // 서브 캔버스를 지우고, 기본 선을 다시 그리기
+            subContext.clearRect(0, 0, subCanvas.width, subCanvas.height);
+            drawBaseLine();
+
+            // 각 점의 선분에서 t의 값에 따른 t의 위치값
+            Q0.x = (P1.x == P0.x) ? (P0.x) : (P0.x + (P1.x - P0.x) * t);
+            Q0.y = (P1.y == P0.y) ? (P0.y) : (P0.y + (P1.y - P0.y) * t);
+
+            Q1.x = (P2.x == P1.x) ? (P1.x) : (P1.x + (P2.x - P1.x) * t);
+            Q1.y = (P2.y == P1.y) ? (P1.y) : (P1.y + (P2.y - P1.y) * t);
+
+            Qt.x = (Q1.x == Q0.x) ? (Q0.x) : (Q0.x + (Q1.x - Q0.x) * t);
+            Qt.y = (Q1.y == Q0.y) ? (Q0.y) : (Q0.y + (Q1.y - Q0.y) * t);
+
+            // 선분의 굵기 설정
+            subContext.lineWidth = 1;
+
+            // Q0과 Q1을 점으로 표시
+            subContext.beginPath();
+            subContext.fillStyle = "red";
+            subContext.arc(Q0.x, Q0.y, 3, 0, (Math.PI/180)*360, false); // 점1
+            subContext.arc(Q1.x, Q1.y, 3, 0, (Math.PI/180)*360, false); // 점2
+            subContext.fill();
+
+            // Q0과 Q1을 잇는 선분
+            subContext.beginPath();
+            subContext.strokeStyle = "green";
+            subContext.moveTo(Q0.x, Q0.y);
+            subContext.lineTo(Q1.x, Q1.y);
+            subContext.stroke();
+        }
+
+        // 화면 갱신(Main Canvas)
+        function update2() {
+
+            // 최종 곡선의 표시
+            mainContext.beginPath();
+            mainContext.fillStyle = "blue";
+            mainContext.arc(Qt.x, Qt.y, 3, 0, (Math.PI/180)*360, false);
+            mainContext.fill();
+        }
+
+        function calculateT() {
+
+            // t가 가지는 범위인 0 <= t <= 1 을 표현
+            if (t <= 1) {
+                t += 0.01;
+            } else {
+                t = 0;
+                mainContext.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+            }
+
+            // t값의 로그 출력
+            console.log("t: " + t);
+        }
+
+        // 화면 갱신 통합
+        function update() {
+            update1();
+            update2();
+            calculateT();
+        }
+
+        // 메소드 호출
+        drawBaseLine();
+        update();
+        setInterval(update, 1000/30);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>moveTo 메소드 이해하기</title>
+</head>
+<body>
+    <!--캔버스 요소-->
+    <canvas id="myCanvas" width="2000" height="400">
+        Your browser don't support HTML5 Canvas!
+    </canvas>
+    <script>
+        // 캔버스
+        var myCanvas = document.getElementById("myCanvas");
+        var myContext = myCanvas.getContext("2d");
+
+        // Dotted Path
+        var lineGap = 10;
+        var lineLength = 50;
+        var lineCount = 10;
+        var lineFactor = lineGap + lineLength;
+
+        // Path의 굵기
+        myContext.lineWidth = 10;
+
+        // 반복해서 그리기
+        for(var i=0; i<lineCount; i++) {
+            myContext.moveTo(lineGap + (lineFactor * i), 10);
+            myContext.lineTo(lineFactor + (lineFactor * i), 10);
+        }
+
+        // 컨텍스트에 패스 그리기
+        myContext.stroke();
+    </script>
+</body>
+</html>

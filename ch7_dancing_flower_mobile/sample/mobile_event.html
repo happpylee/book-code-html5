@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>모바일에서 터치 이벤트 사용하기</title>
+    <style>
+        #touchText {
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+            height: 500px;
+            font-size: 4em;
+            color: #ffffff;
+            background-color: #f04530;
+        }
+    </style>
+</head>
+<body>
+    <div id="touchText">Touch This!</div>
+    <script>
+        var touchText = document.getElementById("touchText");
+        touchText.addEventListener("touchstart", touchstartHandler, false);
+        touchText.addEventListener("touchend", touchendHandler, false);
+        touchText.addEventListener("touchmove", touchmoveHandler, false);
+        touchText.addEventListener("touchcancel", touchcancelHandler, false);
+
+        function touchstartHandler(event) {
+            logHTML("[touchstart]");
+            event.preventDefault();
+        }
+
+        function touchendHandler(event) {
+            logHTML("[touchend]");
+            event.preventDefault();
+        }
+
+        function touchmoveHandler(event) {
+            logHTML("[touchmove]");
+            console.log("[touchmove]");
+            event.preventDefault();
+        }
+
+        function touchcancelHandler(event) {
+            logHTML("[touchcancel]");
+            event.preventDefault();
+        }
+
+        function logHTML(eventType) {
+            touchText.innerHTML = eventType;
+        }
+    </script>
+</body>
+</html>

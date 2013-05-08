@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>컨텍스트(Context) 이해하기1</title>
+</head>
+<body>
+    <script>
+        // 함수의 정의
+        function MyFunc() {
+            console.log("this의 정체는 ? " + this);
+        }
+        MyFunc.prototype.toString = function() {
+            return "[object MyFunc]";
+        }
+
+        // 일반적인 방법으로 함수 호출
+        MyFunc();
+
+        // 생성자로서 함수 호출
+        var myFunc = new MyFunc();
+
+        // 어떤 객체의 메소드로서 함수 호출
+        var MyObject = {
+            callFunc : MyFunc,
+            toString : function() {
+                return "[object MyObject]";
+            }
+        };
+        MyObject.callFunc();
+
+        // apply 또는 call을 사용하여 함수 호출
+        MyFunc.apply(this);
+        MyFunc.apply(myFunc);
+        MyFunc.apply(MyObject);
+    </script>
+</body>
+</html>

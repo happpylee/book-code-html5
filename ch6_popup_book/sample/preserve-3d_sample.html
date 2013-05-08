@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>preserve-3d</title>
+    <style>
+        .CSS3DSpace {
+            width: 200px;
+            height: 250px;
+            border: 1px dotted #0b1eff;
+
+            -webkit-perspective: 300;
+            perspective: 300;
+        }
+        .imageContainerDiv {
+            position: absolute;
+            left: 24px;
+            top: 18px;
+            width: 150px;
+            height: 215px;
+            background-color: #fff926;
+
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+            -webkit-transform : rotateX(30deg);
+            -ms-transform : rotateX(30deg);
+            transform : rotateX(30deg);
+        }
+        .imageDiv {
+            width: 150px;
+            height: 215px;
+            border: 1px dotted #a30071;
+            background: url("image/apple_tree.png");
+
+            -webkit-transform : rotateX(30deg);
+            -ms-transform : rotateX(30deg);
+            transform : rotateX(30deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="CSS3DSpace">
+        <div class="imageContainerDiv">
+            <div class="imageDiv"></div>
+        </div>
+    </div>
+</body>
+</html>

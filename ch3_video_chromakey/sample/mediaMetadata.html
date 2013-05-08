@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>미디어 요소 데이터 관련</title>
+</head>
+<body>
+
+<button onclick="getTextTracks()" type="button">Get the number of available text tracks</button>
+<br>
+<video id="video1" controls="controls">
+    <source src="http://www.w3schools.com/tags/mov_bbb.mp4" type="video/mp4">
+    <source src="http://www.w3schools.com/tags/mov_bbb.ogg" type="video/ogg">
+    <track src="http://www.w3schools.com/tags/demo_sub.vtt">
+        Your browser does not support HTML5 video.
+    </track>
+</video>
+
+<script>
+    myVid=document.getElementById("video1");
+    myVid.addTextTrack("descriptions", "www.jpub.kr");
+
+
+    function getTextTracks()
+    {
+        alert("textTracks.length: " + myVid.textTracks.length + " / textTracks[1].kind: " + myVid.textTracks[1].kind + " / myVid.textTracks[1].descriptions: " + myVid.textTracks[1].label);
+    }
+</script>
+
+<p>Video courtesy of <a href="http://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.</p>
+
+</body>
+</html>

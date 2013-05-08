@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>requestAnimationFrame을 사용한 애니메이션</title>
+</head>
+<body>
+    <script>
+
+        window.renderAnimationFrame = (function() {
+            return  window.requestAnimationFrame       ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame    ||
+                    function(callback) {
+                        window.setTimeout(callback, 1000/60);
+                    };
+        })();
+
+        function update() {
+            console.log("requestAnimationFrame 메소드를 활용한 애니메이션");
+        }
+
+        function loopAnimationFrame() {
+            update();
+            window.renderAnimationFrame(loopAnimationFrame);
+        }
+
+        loopAnimationFrame();
+
+    </script>
+</body>
+</html>

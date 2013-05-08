@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>box2dWeb Creating RevoluteJoint</title>
+    <style> canvas { border: 1px dotted rgba(255, 186, 165, 0.5); } </style>
+    <script src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+</head>
+<body>
+    <canvas id="box2dWebCanvas" width="600" height="400"></canvas>
+    <script src="js/box2dweb-basic-setting.js"></script>
+    <script>
+
+        //////////////////////////////////////////////////////////////
+        // World Scale
+        //////////////////////////////////////////////////////////////
+
+        var worldScale = 30;
+
+        //////////////////////////////////////////////////////////////
+        // World 생성
+        //////////////////////////////////////////////////////////////
+
+        var world = new b2World(new b2Vec2(0, 10), true);
+
+        //////////////////////////////////////////////////////////////
+        // Box Body 정의
+        //////////////////////////////////////////////////////////////
+
+        function createBoxBody(x, y, width, height, density, friction, restitution, bodyType) {
+
+            // bodyDef 생성
+            var bodyDef = new b2BodyDef();
+            bodyDef.type = bodyType;
+            bodyDef.position.x = x/worldScale;
+            bodyDef.position.y = y/worldScale;
+
+            // shape 생성
+            var shape = new b2PolygonShape();
+            shape.SetAsBox(width/2/worldScale, height/2/worldScale);
+
+            //  fixtureDef 생성
+            var fixtureDef = new b2FixtureDef();
+            fixtureDef.density = density;
+            fixtureDef.friction = friction;
+            fixtureDef.restitution = restitution;
+            fixtureDef.shape = shape;
+
+            //  Body 생성
+            var Body = world.CreateBody(bodyDef);
+            Body.CreateFixture(fixtureDef);
+
+            return Body;
+        }
+
+        //////////////////////////////////////////////////////////////
+        // Ground 생성
+        //////////////////////////////////////////////////////////////
+
+        var groundBottom = createBoxBody(300, 400, 590, 10, 1.0, 0.5, 0.2, b2Body.b2_staticBody);
+
+        //////////////////////////////////////////////////////////////
+        // Box 생성
+        //////////////////////////////////////////////////////////////
+
+        var box1 = createBoxBody(300, 300, 50, 50, 1.0, 0.5, 0.2, b2Body.b2_dynamicBody);
+        var box2 = createBoxBody(400, 300, 50, 100, 1.0, 0.5, 0.2, b2Body.b2_dynamicBody);
+
+        //////////////////////////////////////////////////////////////
+        // RevoluteJoint Joint 생성
+        //////////////////////////////////////////////////////////////
+
+        var anchor = box1.GetWorldCenter();
+
+        var revoluteJointDef = new b2RevoluteJointDef();
+        revoluteJointDef.Initialize(box1, box2, anchor);
+        revoluteJointDef.enableLimit = true;
+        revoluteJointDef.lowerAngle = -(0.5 + 0.25) * b2Settings.b2_pi; // -90도 + -45도
+        revoluteJointDef.enableMotor = false;
+        revoluteJointDef.maxMotorTorque = 10.0;
+        revoluteJointDef.motorSpeed = 0;
+        world.CreateJoint(revoluteJointDef);
+
+        //////////////////////////////////////////////////////////////
+        // Mouse Event 생성과 Mouse Joint 생성
+        //////////////////////////////////////////////////////////////
+
+        var mouseX = 0;
+        var mouseY = 0;
+        var isMouseDown = false;
+
+        function addMouseEvent() {
+            document.addEventListener("mousedown", function(event) {
+                isMouseDown = true;
+                document.addEventListener("mousemove", mousemoveHandler, false);
+                mousemoveHandler(event);
+            }, false);
+
+            document.addEventListener("mouseup", function(event) {
+                mouseX = undefined;
+                mouseY = undefined;
+                isMouseDown = false;
+                document.removeEventListener("mousemove", mousemoveHandler,false);
+
+            }, false);
+        }
+
+        function mousemoveHandler(event) {
+            mouseX = event.clientX / worldScale;
+            mouseY = event.clientY / worldScale;
+        }
+
+        addMouseEvent();
+
+        //////////////////////////////////////////////////////////////
+        // Body의 선택(mousedown) 및 드래그(mousemove)에 대한 처리
+        //////////////////////////////////////////////////////////////
+
+        var mousePVec = null;
+        var mouseJoint = null;
+        var selectedBody = null;
+
+        function getBodyAtMouse() {
+            var aabb = new b2AABB();
+            aabb.lowerBound.Set(mouseX - 0.001, mouseY - 0.001);
+            aabb.upperBound.Set(mouseX + 0.001, mouseY + 0.001);
+
+            selectedBody = null;
+            mousePVec = new b2Vec2(mouseX, mouseY);
+            world.QueryAABB(getBodyCB, aabb);
+
+            return selectedBody;
+        }
+
+        function getBodyCB(fixture) {
+            if(fixture.GetBody().GetType() != b2Body.b2_staticBody) {
+                if(fixture.GetShape().TestPoint(fixture.GetBody().GetTransform(), mousePVec)) {
+                    selectedBody = fixture.GetBody();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //////////////////////////////////////////////////////////////
+        // Draw Update
+        //////////////////////////////////////////////////////////////
+
+        function update() {
+
+            if(isMouseDown && (!mouseJoint)) {
+                var body = getBodyAtMouse();
+                if(body) {
+                    var md = new b2MouseJointDef();
+                    md.bodyA = world.GetGroundBody();
+                    md.bodyB = body;
+                    md.collideConnected = true;
+                    md.target.Set(mouseX, mouseY);
+                    md.maxForce = 300.0 * body.GetMass();
+                    mouseJoint = world.CreateJoint(md);
+                    body.SetAwake(true);
+                }
+            }
+
+            if(mouseJoint) {
+                if(isMouseDown) {
+                    mouseJoint.SetTarget(new b2Vec2(mouseX, mouseY));
+                }
+                else {
+                    world.DestroyJoint(mouseJoint);
+                    mouseJoint = null;
+                }
+            }
+
+            world.Step(1/60, 6, 2);
+            world.ClearForces();
+            world.DrawDebugData();
+        }
+
+        //////////////////////////////////////////////////////////////
+        // Debug Mode
+        //////////////////////////////////////////////////////////////
+
+        // Debug Draw 세팅
+        world.SetDebugDraw(debugDraw);
+
+        // 화면 갱신
+        setInterval(update, 1000/60);
+
+    </script>
+</body>
+</html>

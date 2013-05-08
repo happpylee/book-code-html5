@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#canvasContainer {
+    margin: 0 auto;
+    width: 800px;
+    height: 450px;
+    background-color: #b1dbf4;
+}
+
+#landscapeMessage {
+    margin: 0 auto;
+    display: none;
+}
+
+@media screen and (max-width:640px) {
+
+    #canvasContainer {
+        width: 320px;
+        height: 350px;
+    }
+}
+
+@media screen and (max-height:320px) and (orientation:landscape) {
+
+    #canvasContainer {
+        display: none;
+    }
+
+    #landscapeMessage {
+        width: 362px;
+        height: 208px;
+        display: block;
+        background-image: url("../res/image/landscape_message.png");
+    }
+}
