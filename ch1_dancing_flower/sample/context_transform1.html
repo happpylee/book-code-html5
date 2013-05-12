@@ -2,15 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>이미지의 회전1</title>
 </head>
 <body>
     <script>
         // canvas 생성
         var canvasContainer = document.createElement("div");
         var myCanvas = document.createElement("canvas");
-        myCanvas.width = 400;
-        myCanvas.height = 400;
+        myCanvas.width = 300;
+        myCanvas.height = 300;
         myCanvas.style.border = "1px dashed #ff255f";
         canvasContainer.appendChild(myCanvas);
         document.body.appendChild(canvasContainer);
@@ -30,15 +30,10 @@
 
         // canvas(context)에 이미지 표시
         function drawImageOnContext() {
-
             canvasContext.save();
             canvasContext.transform(1, 0, 0, 1, 0, 0);
-//            canvasContext.translate(200 + image.width/2, 200 + image.height/2);
-//            canvasContext.scale(2, 2);
             canvasContext.rotate(45 * Math.PI / 180);
             canvasContext.drawImage(image, 50, 50);
-
-//            canvasContext.drawImage(image, -(image.width/2), -(image.height/2));
             canvasContext.restore();
         }
     </script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>이미지의 변환 - 종합</title>
+</head>
+<body>
+    <script>
+        // canvas 생성
+        var canvasContainer = document.createElement("div");
+        var myCanvas = document.createElement("canvas");
+        myCanvas.width = 400;
+        myCanvas.height = 400;
+        myCanvas.style.border = "1px dashed #ff255f";
+        canvasContainer.appendChild(myCanvas);
+        document.body.appendChild(canvasContainer);
+
+        // context 획득
+        var canvasContext = myCanvas.getContext("2d");
+
+        // 표시할 이미지 로드 시작
+        var image = document.createElement("img");
+        image.addEventListener("load", imageLoadHandler, false);
+        image.src = "res/apple_tree.png";
+
+        // 표시할 이미지 로드 완료
+        function imageLoadHandler(event) {
+            drawImageOnContext();
+        }
+
+        // canvas(context)에 이미지 표시
+        function drawImageOnContext() {
+            // 빨간색 채우기 상태 정보 설정
+            canvasContext.fillStyle = "#ff0000";
+
+            // 이미지 표시하기
+            canvasContext.drawImage(image, 0, 0); // A
+            canvasContext.drawImage(image, 0, 260, 160, 84); // B
+            canvasContext.drawImage(image, 340, 50); // C
+
+            // 현재의 컨텍스트 상태 정보 저장
+            canvasContext.save();
+
+            // 컨텍스트의 변환행렬 초기화
+            canvasContext.transform(1, 0, 0, 1, 0, 0);
+
+            // 컨텍스트의 이동(이미지 중심으로)
+            canvasContext.translate(150 + image.width/2, 150 + image.height/2);
+
+            // 새로운 컨텍스트 기준점으로 회전
+            canvasContext.rotate(45 * Math.PI / 180);
+
+            // 이동된 컨텍스트에 이미지 표시하기
+            canvasContext.drawImage(image, -(image.width/2), -(image.height/2)); // D
+
+            // 파란색 채우기 상태 정보 설정 및 사각형 그리기
+            canvasContext.fillStyle = "#0000ff";
+            canvasContext.fillRect(0, 0, 50, 50); // E
+
+            // 스택에 저장되어 있던 컨텍스트 상태 복원
+            canvasContext.restore();
+
+            // (복원된) 빨간색 컨텍스트 상태 정보로 사각형 그리기
+            // 그리기 기준점은 이동한 컨텍스트의 원점
+            canvasContext.fillRect(100, 0, 50, 50); // F
+        }
+    </script>
+</body>
+</html>

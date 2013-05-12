@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>컨텍스트 상태정보 이해하기</title>
+</head>
+<body>
+    <div id="canvasContainer">
+        <canvas id="myCanvas" width="250" height="70" style="border: 1px dashed #ff255f;"></canvas>
+    </div>
+
+    <script>
+        var myCanvas = document.getElementById("myCanvas");
+        var myContext = myCanvas.getContext("2d");
+
+        // 첫번째 사각형
+        myContext.fillStyle = "#ff0000";
+        myContext.fillRect(10, 10, 50, 50);
+
+        // 두번째 사각형
+        myContext.fillRect(70, 10, 50, 50);
+
+        // 세번째 사각형
+        myContext.save();
+        myContext.fillStyle = "#00ff00";
+        myContext.fillRect(130, 10, 50, 50);
+
+        // 네번째 사각형
+        myContext.restore();
+        myContext.fillRect(190, 10, 50, 50);
+    </script>
+</body>
+</html>
