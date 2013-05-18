@@ -283,7 +283,7 @@ window.addEventListener("load", function(event) {
             // 오른쪽으로 드래그 했을 때(페이지가 닫힘)
             else if(previousMouseX < event.clientX) {
 
-                // 아직 페이지가 덜 열였을 때
+                // 아직 페이지가 덜 닫혔을 때
                 if(frontPageRotateY < PAGE_CLOSE_ANGLE_LIST[currentPageNo]) {
 
                     frontPageRotateY += 2;
@@ -294,13 +294,13 @@ window.addEventListener("load", function(event) {
                     // 1페이지(본문2페이지+뒷면)
                     if(currentPageNo == 2) {
 
-                        // 페이지의 열리는 각도 단계값에 따라, 회전과 위치를 변경
+                        // 페이지의 닫히는 각도 단계값에 따라, 회전과 위치를 변경
                         viewportRotateX = -60 + (VIEWPORT_ROTATE_X_FACTOR * pageOpenCloseStep);         // ==> -20
                         viewportTranslateX = 260 - (VIEWPORT_TRANSLATE_X_FACTOR * pageOpenCloseStep);   // ==> 0
                         viewportTranslateY = -70 + (VIEWPORT_TRANSLATE_Y_FACTOR * pageOpenCloseStep);   // ===> 50
                         viewportTranslateZ = -600 + (VIEWPORT_TRANSLATE_Z_FACTOR * pageOpenCloseStep);  // ==> -400
 
-                        // 페이지가 열릴 수 있는 마지막 각도 단계값일 때(더 이상은 페이지가 회전되지 않음)
+                        // 페이지가 닫힐 수 있는 마지막 각도 단계값일 때(더 이상은 페이지가 회전되지 않음)
                         // 미리 설정된 뷰포의 값으로 설정
                         if(pageOpenCloseStep == 0) {
 
@@ -363,7 +363,7 @@ window.addEventListener("load", function(event) {
                     page2_decoration4.style.webkitTransform = "rotateX(" + page2_decoration4_rotateX + "deg)";
                 }
 
-                // 설정된 각도까지 페이지가 완전히 열렸을 때
+                // 설정된 각도까지 페이지가 완전히 닫혔을 때
                 else if(frontPageRotateY >= PAGE_CLOSE_ANGLE_LIST[currentPageNo]) {
 
                     if(currentPageNo != 0) {
