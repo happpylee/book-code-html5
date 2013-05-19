@@ -68,11 +68,11 @@ addEventListener("load", function(event) {
         if(video.canPlayType("video/mp4") == "probably" || video.canPlayType("video/mp4") == "maybe") {
             videoFormat = "mp4";
         }
-        else if(video.canPlayType("video/webm") == "probably" || video.canPlayType("video/webm") == "maybe") {
-            videoFormat = "webm";
-        }
         else if(video.canPlayType("video/ogg") == "probably" || video.canPlayType("video/ogg") == "maybe") {
             videoFormat = "ogg";
+        }
+        else if(video.canPlayType("video/webm") == "probably" || video.canPlayType("video/webm") == "maybe") {
+            videoFormat = "webm";
         }
 
         return videoFormat;
