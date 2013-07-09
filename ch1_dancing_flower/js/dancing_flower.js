@@ -96,10 +96,10 @@ window.addEventListener("load", function(event) {
 
     function drawPaintingElements() {
 
-        // canvas를 깨끗하게 지우기(초기화 하기)
+        // canvas를 깨끗하게 지우기(초기화하기)
         animationContext.clearRect(0, 0, animationCanvas.width, animationCanvas.height);
 
-        // 업데이트 할 내용들을 화면(canvas)에 그리기
+        // 업데이트할 내용들을 화면(canvas)에 그리기
         var hillImage = paintingElementCollection["hill"];
         animationContext.drawImage(hillImage, 0, animationCanvas.height-hillImage.height);
         animationContext.drawImage(paintingElementCollection["giraffe"], giraffePosX, giraffePosY);
