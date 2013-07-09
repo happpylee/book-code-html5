@@ -30,9 +30,9 @@
 
         // canvas(context)에 이미지 표시
         function drawImageOnContext() {
-            canvasContext.drawImage(image, 0, 0);
-            canvasContext.drawImage(image, 0, 240, 160, 84);
-            canvasContext.drawImage(image, 300, 50);
+            canvasContext.drawImage(image, 0, 0); // (A)
+            canvasContext.drawImage(image, 0, 240, 160, 84); // (C)
+            canvasContext.drawImage(image, 300, 50); // (B)
         }
     </script>
 </body>
