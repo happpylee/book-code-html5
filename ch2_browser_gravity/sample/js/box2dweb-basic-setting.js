@@ -33,4 +33,4 @@ debugDraw.SetSprite(document.getElementById("box2dWebCanvas").getContext("2d"));
 debugDraw.SetDrawScale(30.0);
 debugDraw.SetFillAlpha(0.3);
 debugDraw.SetLineThickness(1.0);
-debugDraw.SetFlags(b2DebugDraw.e_centerOfMassBit | b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+debugDraw.SetFlags(b2DebugDraw.e_jointBit | b2DebugDraw.e_shapeBit | b2DebugDraw.e_centerOfMassBit);
