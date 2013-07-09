@@ -42,7 +42,7 @@ window.addEventListener("load", function(event) {
     paintingElementInfoList.push({cropX:208, cropY:220, cropWidth:158, cropHeight:147, cropImageIndex:"singlehouse", cropImageName:"외톨이집"});
     paintingElementInfoList.push({cropX:685, cropY:0, cropWidth:150, cropHeight:164, cropImageIndex:"burgerstore", cropImageName:"햄버거가게"});
     paintingElementInfoList.push({cropX:493, cropY:0, cropWidth:192, cropHeight:166, cropImageIndex:"truckhouse", cropImageName:"지게차집"});
-    paintingElementInfoList.push({cropX:366, cropY:180, cropWidth:71, cropHeight:101, cropImageIndex:"colorrose", cropImageName:"칼라장미꽃"});
+    paintingElementInfoList.push({cropX:366, cropY:180, cropWidth:71, cropHeight:101, cropImageIndex:"colorrose", cropImageName:"컬러장미꽃"});
     paintingElementInfoList.push({cropX:437, cropY:180, cropWidth:61, cropHeight:86, cropImageIndex:"dandelion", cropImageName:"민들레꽃"});
     paintingElementInfoList.push({cropX:498, cropY:180, cropWidth:31, cropHeight:51, cropImageIndex:"spore", cropImageName:"홀씨"});
     paintingElementInfoList.push({cropX:366, cropY:281, cropWidth:100, cropHeight:100, cropImageIndex:"tulip", cropImageName:"튤립"});
