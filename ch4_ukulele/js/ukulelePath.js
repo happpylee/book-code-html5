@@ -6,16 +6,16 @@ var UkulelePath = UkulelePath || {
     //
     ///////////////////////////////////////////////////
 
-    DECAY_COEFFICIENT : -0.9, // 감쇠 계수
-    DIFFERENCE_COEFFICIENT : 0.5, // 차이 계수
+    DECAY_COEFFICIENT : -0.9,        // 감쇠 계수
+    DIFFERENCE_COEFFICIENT : 0.5,    // 차이 계수
     INTERACTION_COEFFICIENT : 0.017, // 반응 계수
-    TAN_ANGLE : 0.10, // 0.176, // tan(10)
+    TAN_ANGLE : 0.10,
 
     PATH_VALUE_LIST : [
-        [70, 134, 632, 134],   // 1번줄
-        [70, 118, 632, 118],   // 2번줄
-        [70, 100, 632, 100],   // 3번줄
-        [70, 84, 632, 84]      // 4번줄
+        [70, 134, 632, 134],   // 1번 줄
+        [70, 118, 632, 118],   // 2번 줄
+        [70, 100, 632, 100],   // 3번 줄
+        [70, 84, 632, 84]      // 4번 줄
     ],
 
     ///////////////////////////////////////////////////
@@ -41,7 +41,7 @@ var UkulelePath = UkulelePath || {
 
         isVibration : false,            // Path의 진동여부
         isPlayArea : false,             // 마우스가 연주 가능영역에 있는지의 여부
-        isMouseMoveOnPath : false,      // 마우스가 Path위에서 움직이고 있는지의 여부
+        isMouseMoveOnPath : false,      // 마우스가 Path 위에서 움직이고 있는지의 여부
 
         startX : 0,                     // Path의 고정 시작점(x)
         startY : 0,                     // Path의 고정 시작점(y)
