@@ -14,8 +14,7 @@
 
             init : function() {
                 var contextBtn = document.getElementById("contextBtn");
-//                contextBtn.addEventListener("click", this.contextHandler, false);
-                contextBtn.addEventListener("click", this.bindContext(this.contextHandler, this), false);
+                contextBtn.addEventListener("click", this.contextHandler, false);
 
                 alert(myContext._name);
             },
