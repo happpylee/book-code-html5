@@ -157,7 +157,7 @@ window.addEventListener("load", function(event) {
 
         if(isMousedown) {
 
-            // 페이지가 얼만큼 열려 있거나 닫혀 있는지에 대한 값
+            // 페이지가 얼마만큼 열려 있거나 닫혀 있는지에 대한 값
             pageOpenCloseStep = (PAGE_CLOSE_ANGLE_LIST[currentPageNo] - frontPageRotateY) / 2 + 1;
 
             // 왼쪽으로 드래그 했을 때(페이지가 열림)
@@ -168,25 +168,25 @@ window.addEventListener("load", function(event) {
 
                     // [참고 내용]
                     //
-                    // 페이지를 넘길때 앞면과 뒷면이 붙은 페이지가 동시에 넘어가기 때문에
-                    // 샘플 프로젝트에서의 페이지 번호는 2배수 형태를 가짐
-                    // 따라서 이 프로젝트는 0페이지와 2페이지, 이렇게 2개의 페이지를 갔게 됨
+                    // 페이지를 넘길 때 앞면과 뒷면이 붙은 페이지가 동시에 넘어가기 때문에
+                    // 실전학습에서의 페이지 번호는 2배수 형태를 가짐
+                    // 따라서 이 프로젝트는 0페이지와 2페이지, 이렇게 2개의 페이지를 갖게 됨
 
-                    // 붙어 있는 앞면과 뒷면을 2씩 회전값을 변화 시킴
+                    // 붙어 있는 앞면과 뒷면을 2씩 회전값을 변화시킴
                     frontPageRotateY -= 2;
                     backPageRotateY -= 2;
 
                     // 0페이지(표지+본문1페이지)
                     if(currentPageNo == 0) {
 
-                        // 페이지의 열리는 각도 단계값에 따라, 회전과 위치를 변경
+                        // 페이지의 열리는 각도 단계 값에 따라 회전과 위치를 변경
                         viewportRotateX = -60 + (VIEWPORT_ROTATE_X_FACTOR * pageOpenCloseStep);         // ==> -20
                         viewportTranslateX = -260 + (VIEWPORT_TRANSLATE_X_FACTOR * pageOpenCloseStep);  // ==> 0
                         viewportTranslateY = -70 + (VIEWPORT_TRANSLATE_Y_FACTOR * pageOpenCloseStep);   // ==> 50
                         viewportTranslateZ = -600 + (VIEWPORT_TRANSLATE_Z_FACTOR * pageOpenCloseStep);  // ==> -400
 
                         // 페이지가 열릴 수 있는 마지막 각도 단계값일 때(더 이상은 페이지가 회전되지 않음)
-                        // 미리 설정된 뷰포의 값으로 설정
+                        // 미리 설정된 뷰포트의 값으로 설정
                         if(pageOpenCloseStep == pageTotalStep) {
 
                             viewportRotateX = -20;
@@ -206,14 +206,14 @@ window.addEventListener("load", function(event) {
                     // 1페이지(본문2페이지+뒷면)
                     if(currentPageNo == 2) {
 
-                        // 페이지의 열리는 각도 단계값에 따라, 회전과 위치를 변경
+                        // 페이지의 열리는 각도 단계 값에 따라 회전과 위치를 변경
                         viewportRotateX = -20 - (VIEWPORT_ROTATE_X_FACTOR * pageOpenCloseStep);         // ==> -60
                         viewportTranslateX = 0 + (VIEWPORT_TRANSLATE_X_FACTOR * pageOpenCloseStep);     // ==> 260
                         viewportTranslateY = 50 - (VIEWPORT_TRANSLATE_Y_FACTOR * pageOpenCloseStep);    // ===> -70
                         viewportTranslateZ = -400 - (VIEWPORT_TRANSLATE_Z_FACTOR * pageOpenCloseStep);  // ==> -600
 
                         // 페이지가 열릴 수 있는 마지막 각도 단계값일 때(더 이상은 페이지가 회전되지 않음)
-                        // 미리 설정된 뷰포의 값으로 설정
+                        // 미리 설정된 뷰포트의 값으로 설정
                         if(pageOpenCloseStep == pageTotalStep) {
 
                             viewportRotateX = -60;
@@ -230,7 +230,7 @@ window.addEventListener("load", function(event) {
                             " => viewportTranslateZ: " + viewportTranslateZ);
                     }
 
-                    // 페이지에 올라가는 데코레이션의 각도를 설정
+                    // 페이지에 올라가는 데커레이션의 각도를 설정
                     //
                     page1_decoration1_rotateX -= 1.2;
                     page1_decoration1.style.webkitTransform = "rotateX(" + page1_decoration1_rotateX + "deg)";
@@ -258,9 +258,9 @@ window.addEventListener("load", function(event) {
                 // 페이지가 완전히 열렸을 때
                 else if(frontPageRotateY <= PAGE_OPEN_ANGLE_LIST[currentPageNo]) {
 
-                    // 페이지를 넘길때 앞면과 뒷면이 붙은 페이지가 동시에 넘어가기 때문에
-                    // 샘플 프로젝트에서의 페이지 번호는 2배수 형태를 가짐
-                    // 따라서 이 프로젝트는 0페이지와 2페이지, 이렇게 2개의 페이지를 갔게 됨
+                    // 페이지를 넘길 때 앞면과 뒷면이 붙은 페이지가 동시에 넘어가기 때문에
+                    // 실전학습에서의 페이지 번호는 2배수 형태를 가짐
+                    // 따라서 이 프로젝트는 0페이지와 2페이지, 이렇게 2개의 페이지를 갖게 됨
                     if(currentPageNo != pageTotalCount/2) {
 
                         currentPageNo += 2;
@@ -270,14 +270,14 @@ window.addEventListener("load", function(event) {
                         backPageRotateY = PAGE_CLOSE_ANGLE_LIST[currentPageNo + 1];
                     }
 
-                    // 이 페이지는 더 이상 왼쪽으로 회전이 불가능 함
+                    // 이 페이지는 더 이상 왼쪽으로 회전이 불가능함
                     canPageRotateY = false;
 
                     console.log("[mousemoveHandler] currentPageNo: " + currentPageNo);
                 }
             }
 
-            // 오른쪽으로 드래그 했을 때(페이지가 닫힘)
+            // 오른쪽으로 드래그했을 때(페이지가 닫힘)
             else if(previousMouseX < event.clientX) {
 
                 // 아직 페이지가 덜 닫혔을 때
@@ -291,14 +291,14 @@ window.addEventListener("load", function(event) {
                     // 1페이지(본문2페이지+뒷면)
                     if(currentPageNo == 2) {
 
-                        // 페이지의 닫히는 각도 단계값에 따라, 회전과 위치를 변경
+                        // 페이지의 닫히는 각도 단계 값에 따라 회전과 위치를 변경
                         viewportRotateX = -60 + (VIEWPORT_ROTATE_X_FACTOR * pageOpenCloseStep);         // ==> -20
                         viewportTranslateX = 260 - (VIEWPORT_TRANSLATE_X_FACTOR * pageOpenCloseStep);   // ==> 0
                         viewportTranslateY = -70 + (VIEWPORT_TRANSLATE_Y_FACTOR * pageOpenCloseStep);   // ===> 50
                         viewportTranslateZ = -600 + (VIEWPORT_TRANSLATE_Z_FACTOR * pageOpenCloseStep);  // ==> -400
 
-                        // 페이지가 닫힐 수 있는 마지막 각도 단계값일 때(더 이상은 페이지가 회전되지 않음)
-                        // 미리 설정된 뷰포의 값으로 설정
+                        // 페이지가 닫힐 수 있는 마지막 각도 단계 값일 때(더 이상은 페이지가 회전되지 않음)
+                        // 미리 설정된 뷰포트의 값으로 설정
                         if(pageOpenCloseStep == 0) {
 
                             viewportRotateX = -20;
@@ -339,7 +339,7 @@ window.addEventListener("load", function(event) {
                             " => viewportTranslateZ: " + viewportTranslateZ);
                     }
 
-                    // 페이지에 올라가는 데코레이션의 각도를 설정
+                    // 페이지에 올라가는 데커레이션의 각도를 설정
                     //
                     page1_decoration1_rotateX += 1.2;
                     page1_decoration1.style.webkitTransform = "rotateX(" + page1_decoration1_rotateX + "deg)";
@@ -379,7 +379,7 @@ window.addEventListener("load", function(event) {
             }
 
             // 현재 마우스 포인터의 위치를 보관하여, 다음에 따라오는 마우스 포인터의 위치와 비교
-            // 이를 통해 유저가 클릭-드래그를 어느쪽 방향으로 했는지를 판단
+            // 이를 통해 유저가 클릭-드래그를 어느 쪽 방향으로 했는지를 판단
             previousMouseX = event.clientX;
 
             // 앞면과 뒷면이 함께 회전하기 위한(페이지가 열리거나 닫히기 위한) 각도를 설정
