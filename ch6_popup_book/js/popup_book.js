@@ -105,7 +105,6 @@ window.addEventListener("load", function(event) {
                                       "rotateZ(" + viewportRotateZ + "deg)";
 
         viewport.style.webkitTransform = viewportTransformString;
-        viewport.style.msTransform = viewportTransformString;
         viewport.style.transform = viewportTransformString;
 
         var bookTransformString = "translateX(" + bookTranslateX + "px) " +
@@ -116,11 +115,9 @@ window.addEventListener("load", function(event) {
                                   "rotateZ(" + bookRotateZ + "deg)";
 
         book.style.webkitTransformOrigin = "600px 300px";
-        book.style.msTransformOrigin = "600px 300px";
         book.style.transformOrigin = "600px 300px";
 
         book.style.webkitTransform = bookTransformString;
-        book.style.msTransform = bookTransformString;
         book.style.transform = bookTransformString;
     }
 

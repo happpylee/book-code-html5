@@ -22,7 +22,6 @@ body {
     transform-style: preserve-3d;
 
     -webkit-transform: translateX(-260px) translateY(-70px) translateZ(-600px) rotateX(-60deg);
-    -ms-transform: translateX(-260px) translateY(-70px) translateZ(-600px) rotateX(-60deg);
     transform: translateX(-260px) translateY(-70px) translateZ(-600px) rotateX(-60deg);
 }
 
@@ -40,7 +39,6 @@ body {
     transform-style: preserve-3d;
 
     -webkit-transform: translateY(100px) rotateX(90deg);
-    -ms-transform: translateY(100px) rotateX(90deg);
     transform: translateY(100px) rotateX(90deg);
 }
 
@@ -54,7 +52,6 @@ body {
     transform-style: preserve-3d;
 
     -webkit-transform-origin: 600px 300px;
-    -ms-transform-origin: 600px 300px;
     transform-origin: 600px 300px;
 }
 
@@ -69,7 +66,6 @@ body {
     transform-style: preserve-3d;
 
     -webkit-transform-origin: 0px 300px;
-    -ms-transform-origin: 0px 300px;
     transform-origin: 0px 300px;
 }
 
@@ -82,7 +78,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform: rotateY(-4deg);
-    -ms-transform: rotateY(-4deg);
     transform: rotateY(-4deg);
 }
 
@@ -90,7 +85,6 @@ body {
     position: relative;
 
     -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    -ms-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
 }
 
@@ -98,7 +92,6 @@ body {
     background-color: rgb(255, 253, 230);
 
     -webkit-transform: rotateY(178deg);
-    -ms-transform: rotateY(178deg);
     transform: rotateY(178deg);
 }
 
@@ -112,7 +105,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform-origin: 75px 215px;
-    -ms-transform-origin: 75px 215px;
     transform-origin: 75px 215px;
 }
 
@@ -126,7 +118,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform-origin: 87px 200px;
-    -ms-transform-origin: 87px 200px;
     transform-origin: 87px 200px;
 }
 
@@ -134,7 +125,6 @@ body {
     background-color: rgb(251, 213, 255);
 
     -webkit-transform: rotateY(-2deg);
-    -ms-transform: rotateY(-2deg);
     transform: rotateY(-2deg);
 }
 
@@ -148,7 +138,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform-origin: 50px 95px;
-    -ms-transform-origin: 50px 95px;
     transform-origin: 50px 95px;
 }
 
@@ -162,7 +151,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform-origin: 35px 100px;
-    -ms-transform-origin: 35px 100px;
     transform-origin: 35px 100px;
 }
 
@@ -176,7 +164,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform-origin: 30px 85px;
-    -ms-transform-origin: 30px 85px;
     transform-origin: 30px 85px;
 }
 
@@ -190,7 +177,6 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform-origin: 50px 100px;
-    -ms-transform-origin: 50px 100px;
     transform-origin: 50px 100px;
 }
 
@@ -203,6 +189,5 @@ body {
     background-repeat: no-repeat;
 
     -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
