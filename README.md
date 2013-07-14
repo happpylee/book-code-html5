@@ -6,7 +6,7 @@ book-code-html5
 
 살펴보시다가 궁금한 점은 아래의 A/S 카페에 질문을 남겨주시기 바랍니다.
 
-네이버 A/S 카페 : http://cafe.naver.com/html5interactive
+네이버 A/S 카페 : http://cafe.naver.com/happpyleebook
 
 모두들 즐거운 코딩에 행복한 날 되시길 바랍니다.
 
